@@ -8,7 +8,7 @@ import {
   WishlistIcon,
   CartIcon,
   UserIcon,
-} from "../../HeaderIcons/HeaderIcons";
+} from "./HeaderIcons/HeaderIcons";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
