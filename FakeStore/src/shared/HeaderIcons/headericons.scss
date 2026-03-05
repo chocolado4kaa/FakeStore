@@ -1,0 +1,36 @@
+
+@use "../../App.scss" as *;
+.badge {
+  position: absolute;
+  top: 0.25rem; 
+  right: 0.25rem;
+  min-width: 1.0625rem; 
+  height: 1.0625rem;
+  background: $accent;
+  color: $bg;
+  font-size: 0.625rem; 
+  font-weight: 700;
+  font-family: $font-body;
+  border-radius: 99rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.25rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.avatar {
+  width: 1.875rem; 
+  height: 1.875rem;
+  border-radius: 0.5rem; 
+  background: $accent-dim;
+  border: 0.09375rem solid $accent; 
+  color: $accent;
+  font-size: 0.6875rem; 
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
