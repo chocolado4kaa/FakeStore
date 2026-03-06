@@ -4,8 +4,6 @@ import { MobileMenu } from "./MobileMenu";
 import { Logo } from "../Logo/Logo";
 import { Button } from "../Button/Button";
 import { useSelector } from "react-redux";
-import { logout } from "../../../features/auth/api/authSlice";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   BurgerIcon,
@@ -17,17 +15,31 @@ import {
   selectIsLoggedIn,
   selectUser,
 } from "../../../features/auth/authSelectors";
+import { Dropdown } from "../Dropdown/Dropdown";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
-  const userInitials = user ? `${user.firstName[0]}${user.lastName[0]}` : "";
+  const userName = user ? `${user.firstName} ${user.lastName}` : "";
+
+  const avatar = user && user.image ? user.image : "";
 
   const cartCount = 0;
   const wishCount = 0;
+
+  const navigate = useNavigate();
+
+  const handleUserClick = () => {
+    if (isLoggedIn) {
+      setDropdownOpen((v) => !v);
+    } else {
+      navigate("/login");
+    }
+  };
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -36,17 +48,6 @@ export const Header = () => {
   }, []);
 
   const burgerClass = "burger" + (menuOpen ? " burgerOpen" : "");
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleLoginClick = () => {
-    if (isLoggedIn) {
-      dispatch(logout());
-    } else {
-      navigate("/login");
-    }
-  };
 
   return (
     <>
@@ -80,13 +81,22 @@ export const Header = () => {
             <Button className="iconBtn" aria-label="Cart">
               <CartIcon count={cartCount} />
             </Button>
-            <Button
-              className="iconBtn"
-              aria-label={isLoggedIn ? "Logout" : "Sign in"}
-              onClick={handleLoginClick}
-            >
-              <UserIcon isLoggedIn={isLoggedIn} userInitials={userInitials} />
-            </Button>
+            <div style={{ position: "relative" }}>
+              <Button
+                className="iconBtn"
+                aria-label={isLoggedIn ? "Account" : "Sign in"}
+                onClick={handleUserClick}
+              >
+                <UserIcon isLoggedIn={isLoggedIn} avatar={avatar} />
+              </Button>
+
+              {isLoggedIn && dropdownOpen && (
+                <Dropdown
+                  userName={userName}
+                  onClose={() => setDropdownOpen(false)}
+                />
+              )}
+            </div>
           </div>
         </div>
       </header>

@@ -2,11 +2,11 @@ import { logout } from "../api/authSlice";
 import { login, fetchMe } from "../api/authThunks";
 import { selectUser, selectIsLoggedIn, selectAuthStatus, selectAuthError } from "../authSelectors";
 import type { LoginCredentials } from "../types/LoginCredentials";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch } from "../../../api/store";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../../../shared/hooks/useAppDispatch";
 
 export const useAuth = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
