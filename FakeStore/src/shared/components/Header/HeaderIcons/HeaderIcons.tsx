@@ -17,10 +17,18 @@ export const WishlistIcon = ({ count }: { count: number }) => (
   </>
 );
 
-export const UserIcon = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
-  <>
-    {isLoggedIn ?
-      <div className="avatar"></div>
-    : <CiUser size={24} />}
-  </>
-);
+export const UserIcon = ({
+  isLoggedIn,
+  userInitials,
+}: {
+  isLoggedIn: boolean;
+  userInitials?: string;
+}) => {
+  return (
+    <>
+      {isLoggedIn ?
+        <div className="avatar">{userInitials}</div>
+      : <CiUser size={24} />}
+    </>
+  );
+};

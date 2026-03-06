@@ -138,6 +138,14 @@ select {
   -webkit-appearance: none;
   appearance: none;
 
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 62.5rem $surface-2 inset !important;
+    -webkit-text-fill-color: $text;
+    caret-color: $text;
+  }
+
   &::placeholder {
     color: $text-muted;
     opacity: 0.7;

@@ -3,35 +3,31 @@ import styles from "./header.module.scss";
 import { MobileMenu } from "./MobileMenu";
 import { Logo } from "../Logo/Logo";
 import { Button } from "../Button/Button";
+import { useSelector } from "react-redux";
+import { logout } from "../../../features/auth/api/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   BurgerIcon,
   WishlistIcon,
   CartIcon,
   UserIcon,
 } from "./HeaderIcons/HeaderIcons";
+import {
+  selectIsLoggedIn,
+  selectUser,
+} from "../../../features/auth/authSelectors";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
+  const userInitials = user ? `${user.firstName[0]}${user.lastName[0]}` : "";
+
   const cartCount = 0;
   const wishCount = 0;
-  const isLoggedIn = false;
-
-  const rightSideButtons = [
-    {
-      icon: <WishlistIcon count={wishCount} />,
-      ariaLabel: "Wishlist",
-    },
-    {
-      icon: <CartIcon count={cartCount} />,
-      ariaLabel: "Cart",
-    },
-    {
-      icon: <UserIcon isLoggedIn={isLoggedIn} />,
-      ariaLabel: "User account",
-    },
-  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -40,6 +36,17 @@ export const Header = () => {
   }, []);
 
   const burgerClass = "burger" + (menuOpen ? " burgerOpen" : "");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    if (isLoggedIn) {
+      dispatch(logout());
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <>
@@ -67,15 +74,19 @@ export const Header = () => {
             </nav>
           </div>
           <div className={styles.right}>
-            {rightSideButtons.map((button, index) => (
-              <Button
-                key={index}
-                className="iconBtn"
-                aria-label={button.ariaLabel}
-              >
-                {button.icon}
-              </Button>
-            ))}
+            <Button className="iconBtn" aria-label="Wishlist">
+              <WishlistIcon count={wishCount} />
+            </Button>
+            <Button className="iconBtn" aria-label="Cart">
+              <CartIcon count={cartCount} />
+            </Button>
+            <Button
+              className="iconBtn"
+              aria-label={isLoggedIn ? "Logout" : "Sign in"}
+              onClick={handleLoginClick}
+            >
+              <UserIcon isLoggedIn={isLoggedIn} userInitials={userInitials} />
+            </Button>
           </div>
         </div>
       </header>
