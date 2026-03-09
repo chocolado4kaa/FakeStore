@@ -1,0 +1,51 @@
+@use "../../../App.scss" as *;
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: $surface;
+  border: 0.0625rem solid $border;
+  border-radius: 1rem;
+  transition:
+    border-color $tr,
+    transform $tr;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-0.125rem);
+  }
+
+  .cardIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: $accent-dim;
+    border-radius: 0.625rem;
+    color: $accent;
+    flex-shrink: 0;
+  }
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    .cardLabel {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: $text-muted;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .cardValue {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: $text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

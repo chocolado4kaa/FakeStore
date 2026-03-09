@@ -6,6 +6,7 @@ import { selectToken } from "./features/auth/authSelectors";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginPage } from "./pages/loginPage/LoginPage";
 import type { AppDispatch } from "./api/store";
+import { ProfilePage } from "./pages/Profile/Profile";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -23,6 +24,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<></>} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/account" element={<ProfilePage />} />
         </Routes>
       </main>
     </BrowserRouter>

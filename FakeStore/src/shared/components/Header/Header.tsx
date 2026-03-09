@@ -4,7 +4,7 @@ import { MobileMenu } from "./MobileMenu";
 import { Logo } from "../Logo/Logo";
 import { Button } from "../Button/Button";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BurgerIcon,
   WishlistIcon,
@@ -63,15 +63,15 @@ export const Header = () => {
             </Button>
             <Logo />
             <nav className={styles.nav}>
-              <a
-                href="/"
+              <Link
+                to="/"
                 className={`${styles.navLink} ${styles.navLinkActive}`}
               >
                 Home
-              </a>
-              <a href="/collections" className={styles.navLink}>
+              </Link>
+              <Link to="/collections" className={styles.navLink}>
                 Collections
-              </a>
+              </Link>
             </nav>
           </div>
           <div className={styles.right}>
