@@ -1,29 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
-
-$bg: #0d0d0d;
-$bg-glass: rgba(13, 13, 13, 0.88);
-$surface: #161616;
-$surface-2: #1e1e1e;
-$border: rgba(255, 255, 255, 0.07);
-$accent: #e8c547;
-$accent-dim: rgba(232, 197, 71, 0.15);
-$text: #f0ede6;
-$text-muted: #8a8682;
-$error: #e85447;
-$success: #47e87a;
-
-$font-display: 'Bebas Neue', 'Impact', sans-serif;
-$font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
-
-$header-h: 4.25rem;
-
-$tr: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-$tr-slow: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-
-$bp-sm: 30rem;             
-$bp-md: 48rem;                
-$bp-lg: 64rem;                
-$bp-xl: 85rem;                 
+@use "@shared/const/variables.scss" as *;
 
 *,
 *::before,

@@ -3,5 +3,13 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "paths": {
+  "@/*": ["src/*"],
+  "@features/*": ["src/features/*"],
+  "@shared/*": ["src/shared/*"],
+  "@pages/*": ["src/pages/*"],
+  "@api/*": ["src/api/*"],
+  "@types/*": ["src/types/*"]
+}
 }
