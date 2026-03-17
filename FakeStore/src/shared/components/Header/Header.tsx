@@ -14,7 +14,7 @@ import {
 import {
   selectIsLoggedIn,
   selectUser,
-} from "../../../features/auth/authSelectors";
+} from "@features/auth/authSelectors";
 import { Dropdown } from "../Dropdown/Dropdown";
 
 export const Header = () => {

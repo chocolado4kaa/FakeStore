@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { fetchMe } from "../../features/auth/api/authThunks";
-import { logout } from "../../features/auth/api/authSlice";
+import { fetchMe } from "@features/auth/api/authThunks";
+import { logout } from "@features/auth/api/authSlice";
 import {
   selectUser,
   selectIsLoggedIn,
-} from "../../features/auth/authSelectors";
+} from "@features/auth/authSelectors";
 import styles from "./profile.module.scss";
-import { useAppDispatch } from "../../shared/hooks/useAppDispatch";
-import { HeroContainer } from "../../shared/components/Hero/Hero";
-import { InfoCard } from "../../shared/components/InfoCard/InfoCard";
-import { InfoCards } from "../../shared/const/InfoCards";
+import { useAppDispatch } from "@shared/hooks/useAppDispatch";
+import { HeroContainer } from "@shared/components/Hero/Hero";
+import { InfoCard } from "@shared/components/InfoCard/InfoCard";
+import { InfoCards } from "@shared/const/InfoCards";
 
 export const ProfilePage = () => {
   const navigate = useNavigate();

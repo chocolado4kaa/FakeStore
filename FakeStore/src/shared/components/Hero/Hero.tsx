@@ -1,5 +1,5 @@
 import { CiLogout } from "react-icons/ci";
-import type { AuthResponse } from "../../../features/auth/types/AuthResponse";
+import type { AuthResponse } from "@features/auth/types/AuthResponse";
 import styles from "./hero.module.scss";
 import { Button } from "../Button/Button";
 

@@ -1,4 +1,4 @@
-import type { MobileMenuProps } from "../../../types/MobileMenuProps";
+import type { MobileMenuProps } from "@/types/MobileMenuProps";
 import { Button } from "../Button/Button";
 import { Logo } from "../Logo/Logo";
 import styles from "./header.module.scss";

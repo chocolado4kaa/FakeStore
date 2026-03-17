@@ -1,4 +1,4 @@
-import type { ButtonProps } from "../../../types/ButtonProps";
+import type { ButtonProps } from "@/types/ButtonProps";
 import clsx from "clsx";
 import styles from "./button.module.scss";
 

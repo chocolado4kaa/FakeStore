@@ -1,4 +1,4 @@
-import type { InputTextProps } from "../../../types/InputTextProps";
+import type { InputTextProps } from "@/types/InputTextProps";
 import styles from "./inputText.module.scss";
 
 export const InputText = ({
