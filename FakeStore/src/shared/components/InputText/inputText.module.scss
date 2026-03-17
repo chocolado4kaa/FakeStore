@@ -1,0 +1,44 @@
+@use "../../../App.scss" as *;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  .label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $text-muted;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    input {
+      width: 100%;
+      background: $surface-2;
+      padding: 0.75rem 1rem 0.75rem 2.625rem;
+      outline: none;
+      border: 0.0625rem solid $border;
+      &::placeholder {
+        color: $text-muted;
+        opacity: 0.6;
+      }
+      &:focus {
+        border-color: $accent;
+        box-shadow: 0 0 0 0.1875rem $accent-dim;
+      }
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+    .inputIcon {
+      position: absolute;
+      left: 0.875rem;
+      color: $text-muted;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+  }
+}

@@ -126,4 +126,36 @@
       display: flex;
     }
   }
+
+  &.dropDownItem {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-muted;
+    border-radius: 0.5rem;
+    transition:
+      color $tr,
+      background $tr;
+    text-align: left;
+
+    .buttonContent{
+      justify-content: flex-start;
+    }
+
+    &:hover {
+      color: $text;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    &.itemDanger {
+      &:hover {
+        color: $error;
+        background: rgba(232, 84, 71, 0.08);
+      }
+    }
+  }
 }

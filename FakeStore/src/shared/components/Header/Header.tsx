@@ -3,35 +3,43 @@ import styles from "./header.module.scss";
 import { MobileMenu } from "./MobileMenu";
 import { Logo } from "../Logo/Logo";
 import { Button } from "../Button/Button";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BurgerIcon,
   WishlistIcon,
   CartIcon,
   UserIcon,
 } from "./HeaderIcons/HeaderIcons";
+import {
+  selectIsLoggedIn,
+  selectUser,
+} from "../../../features/auth/authSelectors";
+import { Dropdown } from "../Dropdown/Dropdown";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
+  const userName = user ? `${user.firstName} ${user.lastName}` : "";
+
+  const avatar = user && user.image ? user.image : "";
 
   const cartCount = 0;
   const wishCount = 0;
-  const isLoggedIn = false;
 
-  const rightSideButtons = [
-    {
-      icon: <WishlistIcon count={wishCount} />,
-      ariaLabel: "Wishlist",
-    },
-    {
-      icon: <CartIcon count={cartCount} />,
-      ariaLabel: "Cart",
-    },
-    {
-      icon: <UserIcon isLoggedIn={isLoggedIn} />,
-      ariaLabel: "User account",
-    },
-  ];
+  const navigate = useNavigate();
+
+  const handleUserClick = () => {
+    if (isLoggedIn) {
+      setDropdownOpen((v) => !v);
+    } else {
+      navigate("/login");
+    }
+  };
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -55,27 +63,40 @@ export const Header = () => {
             </Button>
             <Logo />
             <nav className={styles.nav}>
-              <a
-                href="/"
+              <Link
+                to="/"
                 className={`${styles.navLink} ${styles.navLinkActive}`}
               >
                 Home
-              </a>
-              <a href="/collections" className={styles.navLink}>
+              </Link>
+              <Link to="/collections" className={styles.navLink}>
                 Collections
-              </a>
+              </Link>
             </nav>
           </div>
           <div className={styles.right}>
-            {rightSideButtons.map((button, index) => (
+            <Button className="iconBtn" aria-label="Wishlist">
+              <WishlistIcon count={wishCount} />
+            </Button>
+            <Button className="iconBtn" aria-label="Cart">
+              <CartIcon count={cartCount} />
+            </Button>
+            <div style={{ position: "relative" }}>
               <Button
-                key={index}
                 className="iconBtn"
-                aria-label={button.ariaLabel}
+                aria-label={isLoggedIn ? "Account" : "Sign in"}
+                onClick={handleUserClick}
               >
-                {button.icon}
+                <UserIcon isLoggedIn={isLoggedIn} avatar={avatar} />
               </Button>
-            ))}
+
+              {isLoggedIn && dropdownOpen && (
+                <Dropdown
+                  userName={userName}
+                  onClose={() => setDropdownOpen(false)}
+                />
+              )}
+            </div>
           </div>
         </div>
       </header>

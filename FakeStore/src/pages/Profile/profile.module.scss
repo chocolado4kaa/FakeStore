@@ -1,0 +1,58 @@
+@use "../../App.scss" as *;
+
+.page {
+  background:
+    radial-gradient(
+      ellipse at 10% 20%,
+      rgba(232, 197, 71, 0.05) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 90% 80%,
+      rgba(232, 197, 71, 0.03) 0%,
+      transparent 50%
+    ),
+    $bg;
+
+  .container {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 3rem 1.75rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+
+  .spinner {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border: 0.125rem solid $border;
+    border-top-color: $accent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 36rem) {
+    grid-template-columns: 1fr;
+  }
+}

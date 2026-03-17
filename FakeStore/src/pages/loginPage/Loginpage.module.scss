@@ -1,0 +1,13 @@
+@use "../../App.scss" as *;
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(232, 197, 71, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(232, 197, 71, 0.03) 0%, transparent 50%),
+    $bg;
+}
