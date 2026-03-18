@@ -10,6 +10,7 @@ import { ProfilePage } from "./pages/Profile/Profile";
 import { HomePage } from "./pages/Main/HomePage";
 import "./App.scss";
 import { WishlistDrawer } from "./features/wishlist/components/wishlistDrawer/Wishlistdrawer";
+import { Footer } from "./shared/components/Footer/Footer";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/account" element={<ProfilePage />} />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 };

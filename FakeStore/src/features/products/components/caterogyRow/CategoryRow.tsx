@@ -14,11 +14,7 @@ import { Button } from "@shared/components/Button/Button";
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { ProductCardSkeleton } from "@shared/components/Skeleton/Skeleton";
 
-interface CategoryRowProps {
-  category: Category;
-}
-
-export const CategoryRow = ({ category }: CategoryRowProps) => {
+export const CategoryRow = ({ category }: {category: Category}) => {
   const dispatch = useAppDispatch();
   const products = useSelector(selectProductsByCategory(category.slug));
   const status = useSelector(selectCategoryStatus(category.slug));
