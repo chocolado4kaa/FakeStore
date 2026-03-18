@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./wishlistItem.module.scss";
 import { Button } from "@/shared/components/Button/Button";
 import { CiTrash } from "react-icons/ci";
-import { wishlistItemProps, ProductLinkProps } from "@/types/WishlistItemProps";
+import { wishlistItemProps, ProductLinkProps } from "@/features/wishlist/types/WishlistItemProps";
 
 export const WishlistItem = ({
   product,

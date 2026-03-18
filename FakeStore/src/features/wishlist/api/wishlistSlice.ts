@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { Product } from "@/features/products/types/Product";
+import { wishlistState } from "../types/wishlistState";
 
 const loadFromStorage = (): Product[] => {
   try {
@@ -13,11 +14,6 @@ const loadFromStorage = (): Product[] => {
 const saveToStorage = (items: Product[]) => {
   localStorage.setItem("wishlist", JSON.stringify(items));
 };
-
-interface wishlistState {
-  items: Product[];
-  isWishlistOpen: boolean;
-}
 
 const initialState: wishlistState = {
   items: loadFromStorage(),
