@@ -9,6 +9,7 @@ import type { AppDispatch } from "./api/store";
 import { ProfilePage } from "./pages/Profile/Profile";
 import { HomePage } from "./pages/Main/HomePage";
 import "./App.scss";
+import { WishlistDrawer } from "./features/wishlist/components/wishlistDrawer/Wishlistdrawer";
 import { Footer } from "./shared/components/Footer/Footer";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
+      <WishlistDrawer />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />

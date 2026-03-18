@@ -11,16 +11,15 @@ import {
   CartIcon,
   UserIcon,
 } from "./HeaderIcons/HeaderIcons";
-import {
-  selectIsLoggedIn,
-  selectUser,
-} from "@features/auth/authSelectors";
+import { selectIsLoggedIn, selectUser } from "@features/auth/authSelectors";
 import { Dropdown } from "../Dropdown/Dropdown";
+import { useWishlist } from "@/features/wishlist/hooks/useWishlist";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { count: wishCount, toggleDrawer } = useWishlist();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
@@ -29,7 +28,6 @@ export const Header = () => {
   const avatar = user && user.image ? user.image : "";
 
   const cartCount = 0;
-  const wishCount = 0;
 
   const navigate = useNavigate();
 
@@ -75,7 +73,11 @@ export const Header = () => {
             </nav>
           </div>
           <div className={styles.right}>
-            <Button className="iconBtn" aria-label="Wishlist">
+            <Button
+              className="iconBtn"
+              aria-label="Wishlist"
+              onClick={() => toggleDrawer()}
+            >
               <WishlistIcon count={wishCount} />
             </Button>
             <Button className="iconBtn" aria-label="Cart">

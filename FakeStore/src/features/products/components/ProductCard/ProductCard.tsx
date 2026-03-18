@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./productCard.module.scss";
 import type { Product } from "../../types/Product";
+import { WishlistButton } from "@/features/wishlist/components/wishlistButton/wishlistButton";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const discounted = product.discountPercentage > 0;
@@ -23,6 +24,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
             -{Math.round(product.discountPercentage)}%
           </span>
         )}
+        <WishlistButton product={product} />
       </div>
       <div className={styles.body}>
         <p className={styles.title}>{product.title}</p>
