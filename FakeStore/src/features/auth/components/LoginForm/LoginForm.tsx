@@ -1,6 +1,6 @@
-import { Button } from "../../../../shared/components/Button/Button";
-import { InputText } from "../../../../shared/components/InputText/InputText";
-import { Logo } from "../../../../shared/components/Logo/Logo";
+import { Button } from "@shared/components/Button/Button";
+import { InputText } from "@shared/components/InputText/InputText";
+import { Logo } from "@shared/components/Logo/Logo";
 import { useLoginForm } from "../../hooks/useLoginForm";
 import styles from "./loginForm.module.scss";
 import { CiUser, CiLock, CiRead, CiUnread, CiWarning } from "react-icons/ci";

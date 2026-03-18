@@ -1,5 +1,5 @@
 
-@use "../../../../App.scss" as *;
+@use "@shared/const/variables.scss" as *;
 .badge {
   position: absolute;
   top: 0.25rem; 

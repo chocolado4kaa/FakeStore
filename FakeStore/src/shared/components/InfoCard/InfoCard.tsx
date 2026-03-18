@@ -1,4 +1,4 @@
-import type { InfoCardProps } from "../../../types/InfoCardProps";
+import type { InfoCardProps } from "@/types/InfoCardProps";
 import styles from "./infoCard.module.scss";
 
 export const InfoCard = ({ icon, label, value }: InfoCardProps) => (

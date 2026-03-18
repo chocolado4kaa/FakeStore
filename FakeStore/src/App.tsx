@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoginPage } from "./pages/loginPage/LoginPage";
 import type { AppDispatch } from "./api/store";
 import { ProfilePage } from "./pages/Profile/Profile";
+import { HomePage } from "./pages/Main/HomePage";
+import "./App.scss";
+import { Footer } from "./shared/components/Footer/Footer";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,11 +25,12 @@ const App = () => {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<></>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/account" element={<ProfilePage />} />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 };

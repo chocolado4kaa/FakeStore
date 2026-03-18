@@ -1,5 +1,5 @@
 import { CiUser, CiMail, CiPhone, CiLocationOn } from "react-icons/ci";
-import type { AuthResponse } from "../../features/auth/types/AuthResponse";
+import type { AuthResponse } from "@features/auth/types/AuthResponse";
 
 export const InfoCards = ({
   user,

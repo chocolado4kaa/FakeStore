@@ -2,10 +2,10 @@ import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiUser, CiLogout } from "react-icons/ci";
 import styles from "./dropdown.module.scss";
-import { logout } from "../../../features/auth/api/authSlice";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { logout } from "@features/auth/api/authSlice";
+import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { Button } from "../Button/Button";
-import type { DropdownProps } from "../../../types/DropdownProps";
+import type { DropdownProps } from "@/types/DropdownProps";
 
 export const Dropdown = ({ userName, onClose }: DropdownProps) => {
   const navigate = useNavigate();
