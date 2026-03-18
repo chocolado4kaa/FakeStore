@@ -1,6 +1,9 @@
-import type { MobileMenuProps } from "@/types/MobileMenuProps";
-import { Button } from "../Button/Button";
+import { Link } from "react-router-dom";
+import { Drawer } from "@shared/components/Drawer/Drawer";
+import { DrawerHeader } from "@shared/components/Drawer/DrawerHeader";
 import { Logo } from "../Logo/Logo";
+import { Button } from "../Button/Button";
+import type { MobileMenuProps } from "@/types/MobileMenuProps";
 import styles from "./header.module.scss";
 
 export const MobileMenu = ({
@@ -8,35 +11,32 @@ export const MobileMenu = ({
   setMenuOpen,
   isLoggedIn,
 }: MobileMenuProps) => {
+  const handleClose = () => setMenuOpen(false);
+
   return (
-    <div
-      className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}
-    >
-      <div
-        className={styles.mobileBackdrop}
-        onClick={() => setMenuOpen(false)}
-      />
-      <nav className={styles.mobilePanel}>
-        <div className={styles.mobilePanelHeader}>
-          <Logo />
-          <Button onClick={() => setMenuOpen(false)} className="mobileClose">
-            ✕
-          </Button>
-        </div>
-        <div className={styles.mobileLinks}>
-          <a href="/" className={styles.mobileNavLink}>
-            Home
-          </a>
-          <a href="/collections" className={styles.mobileNavLink}>
-            Collections
-          </a>
-        </div>
-        <div className={styles.mobileFooter}>
-          <Button className="ctaBtn">
-            {isLoggedIn ? "My Account" : "Sign In"}
-          </Button>
-        </div>
+    <Drawer isOpen={menuOpen} onClose={handleClose} side="left" width="17.5rem">
+      <DrawerHeader onClose={handleClose}>
+        <Logo />
+      </DrawerHeader>
+
+      <nav className={styles.mobileLinks}>
+        <Link to="/" className={styles.navLink} onClick={handleClose}>
+          Home
+        </Link>
+        <Link
+          to="/collections"
+          className={styles.navLink}
+          onClick={handleClose}
+        >
+          Collections
+        </Link>
       </nav>
-    </div>
+
+      <div className={styles.footer}>
+        <Button className="ctaBtn">
+          {isLoggedIn ? "My Account" : "Sign In"}
+        </Button>
+      </div>
+    </Drawer>
   );
 };
