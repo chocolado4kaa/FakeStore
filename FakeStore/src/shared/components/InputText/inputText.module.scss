@@ -33,6 +33,10 @@
         cursor: not-allowed;
       }
     }
+    &.inputWrapperError input {
+      border-color: $error;
+      box-shadow: 0 0 0 0.1875rem rgba(232, 84, 71, 0.15);
+    }
     .inputIcon {
       position: absolute;
       left: 0.875rem;
@@ -40,5 +44,14 @@
       pointer-events: none;
       flex-shrink: 0;
     }
+  }
+  .errorMsg {
+    font-size: 0.75rem;
+    color: $error;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    max-width: none;
   }
 }

@@ -5,6 +5,7 @@ export const InputText = ({
   name,
   label,
   icon,
+  error,
   children,
   ...props
 }: InputTextProps) => {
@@ -13,11 +14,14 @@ export const InputText = ({
       <label className={styles.label} htmlFor={name}>
         {label}
       </label>
-      <div className={styles.inputWrapper}>
+      <div
+        className={`${styles.inputWrapper} ${error ? styles.inputWrapperError : ""}`}
+      >
         <div className={styles.inputIcon}>{icon}</div>
-        <input id={name} name={name} type="text" {...props} />
+        <input id={name} name={name} {...props} />
         {children}
       </div>
+      {error && <p className={styles.errorMsg}>{error}</p>}
     </div>
   );
 };
