@@ -11,6 +11,7 @@ import { HomePage } from "./pages/Main/HomePage";
 import "./App.scss";
 import { WishlistDrawer } from "./features/wishlist/components/wishlistDrawer/Wishlistdrawer";
 import { Footer } from "./shared/components/Footer/Footer";
+import { CollectionsPage } from "./pages/Collectionspage/Collectionspage";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/account" element={<ProfilePage />} />
+          <Route path="/collections" element={<CollectionsPage />} />
         </Routes>
       </main>
       <Footer />
