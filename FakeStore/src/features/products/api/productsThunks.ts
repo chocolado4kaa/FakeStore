@@ -14,11 +14,11 @@ export const fetchCategories = createAsyncThunk<Category[]>(
 
 export const fetchProductsByCategory = createAsyncThunk<
   { category: string; products: Product[] },
-  string
+  { category: string; limit?: number } 
 >(
   "products/fetchByCategory",
-  async (category) => {
-    const { data } = await productsApi.getByCategory(category, 10, 0);
+  async ({ category, limit = 10 }) => {
+    const { data } = await productsApi.getByCategory(category, limit, 0);
     return { category, products: data.products };
   }
 );
