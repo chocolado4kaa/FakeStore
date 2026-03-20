@@ -14,7 +14,7 @@ import { Button } from "@shared/components/Button/Button";
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { ProductCardSkeleton } from "@shared/components/Skeleton/Skeleton";
 
-export const CategoryRow = ({ category }: {category: Category}) => {
+export const CategoryRow = ({ category }: { category: Category }) => {
   const dispatch = useAppDispatch();
   const products = useSelector(selectProductsByCategory(category.slug));
   const status = useSelector(selectCategoryStatus(category.slug));
@@ -22,7 +22,7 @@ export const CategoryRow = ({ category }: {category: Category}) => {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchProductsByCategory(category.slug));
+      dispatch(fetchProductsByCategory({ category: category.slug }));
     }
   }, [category.slug]);
 
