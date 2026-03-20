@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import {
   selectCategories,
   selectCategoriesStatus,
-  selectSelectedCategory,
   selectCollectionStatus,
   selectSort,
 } from "@features/products/productsSelectors";
@@ -19,13 +18,17 @@ import { Button } from "@/shared/components/Button/Button";
 
 export const CategoriesList = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { category: categoryParam } = useParams<{ category?: string }>();
 
   const categories = useSelector(selectCategories);
   const categoriesStatus = useSelector(selectCategoriesStatus);
-  const selectedCategory = useSelector(selectSelectedCategory);
   const collectionStatus = useSelector(selectCollectionStatus);
   const sort = useSelector(selectSort);
+
+  const handleCategoryClick = (slug: string) => {
+    navigate(slug === "" ? "/collections" : `/collections/${slug}`);
+  };
 
   useEffect(() => {
     if (categoriesStatus === "idle") {
@@ -41,28 +44,28 @@ export const CategoriesList = () => {
     if (collectionStatus === "idle") {
       dispatch(
         fetchProductsByCategory({
-          category: selectedCategory,
+          category: categoryParam ?? "",
           limit: 100,
           sort,
         }),
       );
     }
-  }, [selectedCategory, collectionStatus]);
+  }, [categoryParam, collectionStatus]);
 
   return (
     <aside className={styles.sidebar}>
       <span className={styles.title}>Categories</span>
       <Button
-        className={`${styles.item} ${selectedCategory === "" ? styles.itemActive : ""}`}
-        onClick={() => dispatch(setCategory(""))}
+        className={`${styles.item} ${categoryParam === "" ? styles.itemActive : ""}`}
+        onClick={() => handleCategoryClick("")}
       >
         All
       </Button>
       {categories.map((cat) => (
         <Button
           key={cat.slug}
-          className={`${styles.item} ${selectedCategory === cat.slug ? styles.itemActive : ""}`}
-          onClick={() => dispatch(setCategory(cat.slug))}
+          className={`${styles.item} ${categoryParam === cat.slug ? styles.itemActive : ""}`}
+          onClick={() => handleCategoryClick(cat.slug)}
         >
           {cat.name}
         </Button>

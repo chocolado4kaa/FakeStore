@@ -32,6 +32,7 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/account" element={<ProfilePage />} />
           <Route path="/collections" element={<CollectionsPage />} />
+          <Route path="/collections/:category" element={<CollectionsPage />} />
         </Routes>
       </main>
       <Footer />
