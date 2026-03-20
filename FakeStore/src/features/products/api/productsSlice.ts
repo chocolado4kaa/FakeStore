@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchCategories, fetchProductsByCategory } from "./productsThunks";
-import { ProductsState, SortOption } from "../types/ProductsState";
+import type { ProductsState, SortOption } from "../types/ProductsState";
 
 const initialState: ProductsState = {
   categories: [],
@@ -17,12 +17,15 @@ const productsSlice = createSlice({
   reducers: {
     setCategory(state, action: PayloadAction<string>) {
       const cat = action.payload;
-      state.selectedCategory = cat;     
+      state.selectedCategory = cat;
       delete state.byCategory[cat];
       delete state.categoryStatus[cat];
     },
     setSort(state, action: PayloadAction<SortOption>) {
       state.sort = action.payload;
+      const cat = state.selectedCategory;
+      delete state.byCategory[cat];
+      delete state.categoryStatus[cat];
     },
   },
   extraReducers: (builder) => {
@@ -38,7 +41,7 @@ const productsSlice = createSlice({
         state.categoriesStatus = "failed";
       })
       .addCase(fetchProductsByCategory.pending, (state, action) => {
-        const {category} = action.meta.arg;
+        const { category } = action.meta.arg;
         state.categoryStatus[category] = "loading";
       })
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
@@ -47,12 +50,11 @@ const productsSlice = createSlice({
         state.categoryStatus[category] = "succeeded";
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
-        const {category} = action.meta.arg;
+        const { category } = action.meta.arg;
         state.categoryStatus[category] = "failed";
       });
   },
 });
-
 
 export const { setCategory, setSort } = productsSlice.actions;
 export default productsSlice.reducer;

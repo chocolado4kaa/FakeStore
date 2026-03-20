@@ -10,6 +10,6 @@ export interface ProductsState {
   categoryStatus: Record<string, Status>;
 }
 
-export type SortOption = "rating" | "price_asc" | "price_desc" | "title";
+export type SortOption ="default" | "rating" | "price_asc" | "price_desc" | "title";
 
 export type Status = "idle" | "loading" | "succeeded" | "failed";
