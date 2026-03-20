@@ -1,37 +1,36 @@
-  import { useState } from "react";
-  import { login } from "../api/authThunks";
-  import { useAuth } from "./useAuth";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, type LoginFormValues } from "../api/Loginschema";
+import { useAuth } from "./useAuth";
+import { login } from "../api/authThunks";
 
-  export const useLoginForm = (onSuccess?: () => void) => {
-    const { login: handleLogin, isLoading, error } = useAuth();
+export const useLoginForm = (onSuccess?: () => void) => {
+  const { login: handleLogin, isLoading, error } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
-    const [fields, setFields] = useState({ username: "", password: "" });
-    const [showPassword, setShowPassword] = useState(false);
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { username: "", password: "" },
+    mode: "onTouched",
+  });
 
-    const isDisabled = isLoading || !fields.username || !fields.password;
+  const handleSubmit = form.handleSubmit(async (values) => {
+    const result = await handleLogin(values);
+    if (login.fulfilled.match(result)) {
+      onSuccess?.();
+    }
+  });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    };
+  const togglePassword = () => setShowPassword((v) => !v);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      const result = await handleLogin(fields);
-      if (login.fulfilled.match(result)) {
-        onSuccess?.();
-      }
-    };
-
-    const togglePassword = () => setShowPassword((v) => !v);
-
-    return {
-      fields,
-      showPassword,
-      isLoading,
-      isDisabled,
-      error,
-      handleChange,
-      handleSubmit,
-      togglePassword,
-    };
+  return {
+    form,
+    showPassword,
+    isLoading,
+    isDisabled: isLoading,
+    error,
+    handleSubmit,
+    togglePassword,
   };
+};

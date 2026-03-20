@@ -7,15 +7,19 @@ import { CiUser, CiLock, CiRead, CiUnread, CiWarning } from "react-icons/ci";
 
 export const LoginForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const {
-    fields,
+    form,
     showPassword,
     isLoading,
     isDisabled,
     error,
-    handleChange,
     handleSubmit,
     togglePassword,
   } = useLoginForm(onSuccess);
+
+  const {
+    register,
+    formState: { errors },
+  } = form;
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -24,29 +28,27 @@ export const LoginForm = ({ onSuccess }: { onSuccess?: () => void }) => {
         <h2 className={styles.title}>Welcome back</h2>
         <p className={styles.subtitle}>Sign in to your account</p>
       </div>
+
       <div className={styles.fields}>
         <InputText
-          name="username"
           label="Username"
           icon={<CiUser size={16} />}
           placeholder="emilys"
-          value={fields.username}
-          onChange={handleChange}
           autoComplete="username"
           disabled={isLoading}
-          required
+          error={errors.username?.message}
+          {...register("username")}
         />
+
         <InputText
-          name="password"
           label="Password"
           type={showPassword ? "text" : "password"}
           icon={<CiLock size={16} />}
           placeholder="••••••••"
-          value={fields.password}
-          onChange={handleChange}
           autoComplete="current-password"
           disabled={isLoading}
-          required
+          error={errors.password?.message}
+          {...register("password")}
         >
           <Button
             type="button"
@@ -60,17 +62,20 @@ export const LoginForm = ({ onSuccess }: { onSuccess?: () => void }) => {
           </Button>
         </InputText>
       </div>
+
       {error && (
         <div className={styles.error}>
           <CiWarning size={16} />
           {error}
         </div>
       )}
+
       <Button type="submit" className={styles.submitBtn} disabled={isDisabled}>
         {isLoading ?
           <span className={styles.spinner} />
         : "Sign In"}
       </Button>
+
       <p className={styles.hint}>
         Demo: <span>emilys</span> / <span>emilyspass</span>
       </p>
