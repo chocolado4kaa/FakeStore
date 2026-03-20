@@ -6,7 +6,7 @@ import {
 } from "@features/products/productsSelectors";
 import styles from "./HomePage.module.scss";
 import { fetchCategories } from "@features/products/api/productsThunks";
-import { CategoryRow } from "@features/products/components/caterogyRow/CategoryRow";
+import { CategoryRow } from "@/features/products/components/categoryRow/CategoryRow";
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { CategoryRowSkeleton } from "@shared/components/Skeleton/Skeleton";
 
