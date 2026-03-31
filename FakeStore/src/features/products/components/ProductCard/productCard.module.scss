@@ -9,10 +9,13 @@
   border: 0.0625rem solid $border;
   border-radius: 1rem;
   overflow: hidden;
-  transition: border-color $tr, transform $tr, box-shadow $tr;
+  transition:
+    border-color $tr,
+    transform $tr,
+    box-shadow $tr;
   cursor: pointer;
   text-decoration: none;
-
+  position: relative;
   &:hover {
     border-color: rgba(255, 255, 255, 0.14);
     transform: translateY(-0.25rem);
@@ -21,7 +24,6 @@
 }
 
 .imgWrap {
-  position: relative;
   width: 100%;
   aspect-ratio: 1;
   background: $surface-2;
