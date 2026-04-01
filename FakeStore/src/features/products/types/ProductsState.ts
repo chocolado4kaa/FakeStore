@@ -8,8 +8,15 @@ export interface ProductsState {
   sort: SortOption;
   categoriesStatus: Status;
   categoryStatus: Record<string, Status>;
+  selectedProduct: Product | null;
+  selectedProductStatus: Status;
 }
 
-export type SortOption ="default" | "rating" | "price_asc" | "price_desc" | "title";
+export type SortOption =
+  | "default"
+  | "rating"
+  | "price_asc"
+  | "price_desc"
+  | "title";
 
 export type Status = "idle" | "loading" | "succeeded" | "failed";
