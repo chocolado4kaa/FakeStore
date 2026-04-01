@@ -12,6 +12,7 @@ import "./App.scss";
 import { WishlistDrawer } from "./features/wishlist/components/wishlistDrawer/Wishlistdrawer";
 import { Footer } from "./shared/components/Footer/Footer";
 import { CollectionsPage } from "./pages/Collectionspage/Collectionspage";
+import { ProductPage } from "./pages/Product/Productpage";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/account" element={<ProfilePage />} />
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/collections/:category" element={<CollectionsPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
       </main>
       <Footer />
