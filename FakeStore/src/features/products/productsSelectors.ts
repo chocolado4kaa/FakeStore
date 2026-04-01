@@ -16,3 +16,7 @@ export const selectCollectionStatus = (state: RootState) => {
   const cat = state.products.selectedCategory;
   return state.products.categoryStatus[cat] ?? "idle";
 };
+export const selectSelectedProduct = (state: RootState) =>
+  state.products.selectedProduct;
+export const selectSelectedProductStatus = (state: RootState) =>
+  state.products.selectedProductStatus;

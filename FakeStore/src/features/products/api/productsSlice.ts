@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { fetchCategories, fetchProductsByCategory } from "./productsThunks";
+import { fetchCategories, fetchProductsByCategory, fetchProductById } from "./productsThunks";
 import type { ProductsState, SortOption } from "../types/ProductsState";
 
 const initialState: ProductsState = {
@@ -9,6 +9,8 @@ const initialState: ProductsState = {
   sort: "rating",
   categoriesStatus: "idle",
   categoryStatus: {},
+  selectedProduct: null,
+  selectedProductStatus: "idle",
 };
 
 const productsSlice = createSlice({
@@ -52,6 +54,17 @@ const productsSlice = createSlice({
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
         const { category } = action.meta.arg;
         state.categoryStatus[category] = "failed";
+      })
+      .addCase(fetchProductById.pending, (state) => {
+        state.selectedProductStatus = "loading";
+        state.selectedProduct = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.selectedProductStatus = "succeeded";
+        state.selectedProduct = action.payload;
+      })
+      .addCase(fetchProductById.rejected, (state) => {
+        state.selectedProductStatus = "failed";
       });
   },
 });
