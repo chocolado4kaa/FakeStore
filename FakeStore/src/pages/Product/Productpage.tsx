@@ -14,6 +14,7 @@ import { ProductInfo } from "@/features/products/components/ProductInfo/ProductI
 import { MetaInfo } from "@/features/products/components/ProductInfo/Meta";
 import { Button } from "@/shared/components/Button/Button";
 import { Title } from "@/shared/components/Title/Title";
+import { useCart } from "@/features/cart/hooks/Usecart";
 
 export const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,9 +24,14 @@ export const ProductPage = () => {
   const product = useSelector(selectSelectedProduct);
   const status = useSelector(selectSelectedProductStatus);
 
+  const { add, addingProductId, isInCart } = useCart();
+
   useEffect(() => {
     if (id) dispatch(fetchProductById(Number(id)));
   }, [id]);
+
+  const isAdding = addingProductId === product?.id;
+  const inCart = isInCart(product?.id);
 
   if (status === "loading")
     return (
@@ -58,7 +64,18 @@ export const ProductPage = () => {
           <Gallery product={product} />
           <div className={styles.info}>
             <ProductInfo product={product} />
-            <Button className={styles.addToCart}>Add to Cart</Button>
+            <Button
+              className={styles.addToCart}
+              onClick={() => add(product)}
+              disabled={isAdding || inCart}
+            >
+              {isAdding ?
+                "Adding..."
+              : inCart ?
+                "Go to Cart"
+              : "Add to Cart"}
+            </Button>
+
             <MetaInfo product={product} />
             {ProductTags}
           </div>
