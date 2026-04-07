@@ -1,3 +1,4 @@
+import { Status } from "@/types/Statuses";
 import { Category } from "./Category";
 import { Product } from "./Product";
 
@@ -18,5 +19,3 @@ export type SortOption =
   | "price_asc"
   | "price_desc"
   | "title";
-
-export type Status = "idle" | "loading" | "succeeded" | "failed";
