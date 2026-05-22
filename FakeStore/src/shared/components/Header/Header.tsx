@@ -80,7 +80,11 @@ export const Header = () => {
             >
               <WishlistIcon count={wishCount} />
             </Button>
-            <Button className="iconBtn" aria-label="Cart">
+            <Button
+              className="iconBtn"
+              aria-label="Cart"
+              onClick={() => navigate("/cart")}
+            >
               <CartIcon count={cartCount} />
             </Button>
             <div style={{ position: "relative" }}>

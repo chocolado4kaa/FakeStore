@@ -8,5 +8,5 @@ export interface wishlistItemProps {
 
 export interface ProductLinkProps {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }

@@ -1,0 +1,34 @@
+@use "@shared/const/variables" as *;
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: $surface;
+  border: 0.0625rem solid $border;
+  border-radius: 1rem;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.media {
+  flex-shrink: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

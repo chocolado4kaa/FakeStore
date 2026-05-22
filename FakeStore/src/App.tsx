@@ -13,6 +13,8 @@ import { WishlistDrawer } from "./features/wishlist/components/wishlistDrawer/Wi
 import { Footer } from "./shared/components/Footer/Footer";
 import { CollectionsPage } from "./pages/Collectionspage/Collectionspage";
 import { ProductPage } from "./pages/Product/Productpage";
+import { CartPage } from "./pages/CartPage/CartPage";
+import { fetchCart } from "./features/cart/api/cartThunks";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +22,12 @@ const App = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchMe());
+      dispatch(fetchMe()).then((result) => {
+        if (fetchMe.fulfilled.match(result)) {
+          console.log(`Fetched user: ${result.payload.id}`);
+          dispatch(fetchCart(result.payload.id));
+        }
+      });
     }
   }, []);
   return (
@@ -35,6 +42,7 @@ const App = () => {
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/collections/:category" element={<CollectionsPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </main>
       <Footer />
