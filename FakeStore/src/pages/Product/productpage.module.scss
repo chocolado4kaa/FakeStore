@@ -1,0 +1,150 @@
+@use "@shared/const/variables.scss" as *;
+
+.page {
+  min-height: 100dvh;
+  padding-top: $header-h;
+}
+
+.container {
+  max-width: $bp-xl;
+  margin: 0 auto;
+  padding: 3rem 1.75rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+
+    @media (max-width: 48rem) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  .spinner {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border: 0.125rem solid $border;
+    border-top-color: $accent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 60vh;
+  color: $text-muted;
+
+  button {
+    padding: 0.5rem 1.25rem;
+    border: 0.0625rem solid $border;
+    border-radius: 0.625rem;
+    color: $text-muted;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition:
+      color $tr,
+      border-color $tr;
+    &:hover {
+      color: $text;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.addToCart {
+  padding: 1rem;
+  background: $accent;
+  color: $bg;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 0.75rem;
+  transition:
+    opacity $tr,
+    transform $tr;
+  width: 100%;
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-0.0625rem);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  .tag {
+    padding: 0.25rem 0.75rem;
+    background: $surface;
+    border: 0.0625rem solid $border;
+    border-radius: 99rem;
+    font-size: 0.75rem;
+    color: $text-muted;
+  }
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .reviewsTitle {
+    font-family: $font-display;
+    font-size: 2rem;
+    color: $text;
+    letter-spacing: 0.04em;
+    line-height: 1;
+
+    .count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.75rem;
+      height: 1.75rem;
+      padding: 0 0.5rem;
+      background: $accent-dim;
+      border: 0.0625rem solid rgba(232, 197, 71, 0.25);
+      border-radius: 99rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: $accent;
+    }
+  }
+
+  .reviewsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,115 @@
+@use "@shared/const/variables.scss" as *;
+
+.category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $accent;
+}
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: $text;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+.brand {
+  font-size: 0.875rem;
+  color: $text-muted;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .stars {
+    display: flex;
+    gap: 0.125rem;
+    .starFilled {
+      color: $accent;
+    }
+    .starEmpty {
+      color: $surface-2;
+    }
+  }
+
+  .ratingValue {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $text;
+  }
+
+  .reviewCount {
+    font-size: 0.875rem;
+    color: $text-muted;
+  }
+
+  .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $accent;
+  }
+
+  .originalPrice {
+    font-size: 1.125rem;
+    color: $text-muted;
+    text-decoration: line-through;
+  }
+}
+
+.description {
+  font-size: 0.9375rem;
+  color: $text-muted;
+  line-height: 1.7;
+  max-width: none;
+}
+
+.stockRow {
+  &::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: block;
+  }
+  &.stock_high::before {
+    background: $success;
+  }
+  &.stock_medium::before {
+    background: $accent;
+  }
+  &.stock_low::before {
+    background: $error;
+  }
+}
+
+.stockText {
+  font-size: 0.875rem;
+  color: $text-muted;
+}
+
+.metaList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: $surface;
+  border: 0.0625rem solid $border;
+  border-radius: 0.875rem;
+
+  .metaItem {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.875rem;
+    color: $text-muted;
+
+    svg {
+      color: $accent;
+      flex-shrink: 0;
+    }
+  }
+}

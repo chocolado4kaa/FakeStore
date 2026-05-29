@@ -1,0 +1,70 @@
+@use "@shared/const/variables.scss" as *;
+
+.card {
+  padding: 1.25rem;
+  background: $surface;
+  border: 0.0625rem solid $border;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color $tr;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .comment {
+    font-size: 0.9375rem;
+    color: $text-muted;
+    line-height: 1.6;
+    max-width: none;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  .avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    background: $accent-dim;
+    border: 0.0625rem solid rgba(232, 197, 71, 0.2);
+    color: $accent;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    .name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: $text;
+    }
+    .date {
+      font-size: 0.75rem;
+      color: $text-muted;
+    }
+  }
+
+  .stars {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    .starFilled {
+      color: $accent;
+    }
+    .starEmpty {
+      color: $surface-2;
+    }
+  }
+}

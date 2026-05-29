@@ -1,0 +1,192 @@
+@use "@shared/const/variables" as *;
+
+.page {
+  min-height: 100dvh;
+  padding-top: $header-h;
+}
+
+.container {
+  max-width: $bp-xl;
+  margin: 0 auto;
+  padding: 3rem 1.75rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.accent {
+  display: block;
+  width: 0.25rem;
+  height: 2rem;
+  background: $accent;
+  border-radius: 99rem;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 2.5rem;
+  color: $text;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0 0.5rem;
+  background: $accent-dim;
+  border: 0.0625rem solid rgba(232, 197, 71, 0.25);
+  border-radius: 99rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: $accent;
+}
+
+.clearBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $text-muted;
+  padding: 0.5rem 1rem;
+  border: 0.0625rem solid $border;
+  border-radius: 0.625rem;
+  transition: color $tr, border-color $tr, background $tr;
+  cursor: pointer;
+  background: none;
+
+  &:hover {
+    color: $error;
+    border-color: rgba(232, 84, 71, 0.3);
+    background: rgba(232, 84, 71, 0.06);
+  }
+}
+
+// Empty
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 6rem 1rem;
+  text-align: center;
+}
+
+.emptyIcon { color: $text-muted; opacity: 0.25; }
+
+.emptyTitle {
+  font-family: $font-display;
+  font-size: 2rem;
+  color: $text;
+  letter-spacing: 0.04em;
+}
+
+.emptySub {
+  font-size: 0.9375rem;
+  color: $text-muted;
+  max-width: none;
+}
+
+.emptyBtn {
+  margin-top: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: $accent;
+  color: $bg;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 0.625rem;
+  transition: opacity $tr, transform $tr;
+
+  &:hover { opacity: 0.88; transform: translateY(-0.0625rem); color: $bg; }
+}
+
+// Content
+.content {
+  display: grid;
+  grid-template-columns: 1fr 22rem;
+  gap: 2rem;
+  align-items: start;
+
+  @media (max-width: 56rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+// Summary
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: $surface;
+  border: 0.0625rem solid $border;
+  border-radius: 1.25rem;
+  position: sticky;
+  top: calc($header-h + 1.5rem);
+}
+
+.summaryTitle {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  color: $text;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9375rem;
+  color: $text-muted;
+}
+
+.free { color: $success; font-weight: 500; }
+
+.summaryDivider {
+  height: 0.0625rem;
+  background: $border;
+}
+
+.summaryTotal {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $text;
+}
+
+.checkoutBtn {
+  display: block;
+  padding: 0.875rem;
+  background: $accent;
+  color: $bg;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 0.625rem;
+  transition: opacity $tr, transform $tr;
+  margin-top: 0.5rem;
+
+  &:hover { opacity: 0.88; transform: translateY(-0.0625rem); color: $bg; }
+}

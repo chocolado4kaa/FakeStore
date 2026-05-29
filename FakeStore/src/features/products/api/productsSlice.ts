@@ -1,26 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchCategories, fetchProductsByCategory } from "./productsThunks";
-import type { Category } from "../types/Category";
-import type { Product } from "../types/Product";
-
-interface ProductsState {
-  categories: Category[];
-  byCategory: Record<string, Product[]>;
-  categoriesStatus: "idle" | "loading" | "succeeded" | "failed";
-  categoryStatus: Record<string, "idle" | "loading" | "succeeded" | "failed">;
-}
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { fetchCategories, fetchProductsByCategory, fetchProductById } from "./productsThunks";
+import type { ProductsState, SortOption } from "../types/ProductsState";
 
 const initialState: ProductsState = {
   categories: [],
   byCategory: {},
+  selectedCategory: "",
+  sort: "rating",
   categoriesStatus: "idle",
   categoryStatus: {},
+  selectedProduct: null,
+  selectedProductStatus: "idle",
 };
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setCategory(state, action: PayloadAction<string>) {
+      const cat = action.payload;
+      state.selectedCategory = cat;
+      delete state.byCategory[cat];
+      delete state.categoryStatus[cat];
+    },
+    setSort(state, action: PayloadAction<SortOption>) {
+      state.sort = action.payload;
+      const cat = state.selectedCategory;
+      delete state.byCategory[cat];
+      delete state.categoryStatus[cat];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
@@ -34,7 +43,7 @@ const productsSlice = createSlice({
         state.categoriesStatus = "failed";
       })
       .addCase(fetchProductsByCategory.pending, (state, action) => {
-        const category = action.meta.arg;
+        const { category } = action.meta.arg;
         state.categoryStatus[category] = "loading";
       })
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
@@ -43,10 +52,22 @@ const productsSlice = createSlice({
         state.categoryStatus[category] = "succeeded";
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
-        const category = action.meta.arg;
+        const { category } = action.meta.arg;
         state.categoryStatus[category] = "failed";
+      })
+      .addCase(fetchProductById.pending, (state) => {
+        state.selectedProductStatus = "loading";
+        state.selectedProduct = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.selectedProductStatus = "succeeded";
+        state.selectedProduct = action.payload;
+      })
+      .addCase(fetchProductById.rejected, (state) => {
+        state.selectedProductStatus = "failed";
       });
   },
 });
 
+export const { setCategory, setSort } = productsSlice.actions;
 export default productsSlice.reducer;

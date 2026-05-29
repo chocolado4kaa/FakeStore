@@ -1,0 +1,31 @@
+@use "@shared/const/variables.scss" as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: $font-display;
+    font-size: 1.75rem;
+    color: $text;
+    letter-spacing: 0.06em;
+    line-height: 1;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 0.25rem;
+      height: 1.75rem;
+      background: $accent;
+      border-radius: 99rem;
+    }
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+  }
+}

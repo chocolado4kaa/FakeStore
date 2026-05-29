@@ -13,8 +13,9 @@ import { CiPlay1 } from "react-icons/ci";
 import { Button } from "@shared/components/Button/Button";
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { ProductCardSkeleton } from "@shared/components/Skeleton/Skeleton";
+import { Title } from "@/shared/components/Title/Title";
 
-export const CategoryRow = ({ category }: {category: Category}) => {
+export const CategoryRow = ({ category }: { category: Category }) => {
   const dispatch = useAppDispatch();
   const products = useSelector(selectProductsByCategory(category.slug));
   const status = useSelector(selectCategoryStatus(category.slug));
@@ -22,7 +23,7 @@ export const CategoryRow = ({ category }: {category: Category}) => {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchProductsByCategory(category.slug));
+      dispatch(fetchProductsByCategory({ category: category.slug }));
     }
   }, [category.slug]);
 
@@ -36,14 +37,16 @@ export const CategoryRow = ({ category }: {category: Category}) => {
 
   return (
     <section className={styles.section}>
-      <div className={styles.header}>
-        <div className={styles.titleWrap}>
-          <h2 className={styles.title}>{category.name}</h2>
-        </div>
-        <Link to={`/collections/${category.slug}`} className={styles.viewAll}>
-          View all <CiPlay1 size={16} />
-        </Link>
-      </div>
+      <Title
+        className={styles.CategoryHeader}
+        actions={
+          <Link to={`/collections/${category.slug}`} className={styles.viewAll}>
+            View all <CiPlay1 size={16} />
+          </Link>
+        }
+      >
+        {category.name}
+      </Title>
       <div className={styles.rowWrap}>
         <Button
           className={`${styles.arrow} ${styles.arrowLeft}`}

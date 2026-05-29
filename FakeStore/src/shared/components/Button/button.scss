@@ -199,4 +199,30 @@
       }
     }
   }
+
+  &.sortBtn {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: $text-muted;
+    background: none;
+    border: 0.0625rem solid $border;
+    border-radius: 99rem;
+    cursor: pointer;
+    transition:
+      color $tr,
+      border-color $tr,
+      background $tr;
+
+    &:hover {
+      color: $text;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &.sortBtnActive {
+      color: $accent;
+      border-color: rgba(232, 197, 71, 0.4);
+      background: $accent-dim;
+    }
+  }
 }
