@@ -7,7 +7,7 @@ import { Button } from "@/shared/components/Button/Button";
 import { Card } from "@/shared/components/Card/Card";
 
 export const CartItem = ({ product }: { product: CartProduct }) => {
-  const { changeQuantity } = useCart();
+  const { updateQty } = useCart();
 
   return (
     <Card className={styles.item}>
@@ -27,7 +27,7 @@ export const CartItem = ({ product }: { product: CartProduct }) => {
       <Card.Actions className={styles.controls}>
         <Button
           className={styles.qtyBtn}
-          onClick={() => changeQuantity(product.id, product.quantity - 1)}
+          onClick={() => updateQty(product.id, product.quantity - 1)}
           disabled={product.quantity <= 1}
         >
           −
@@ -35,14 +35,14 @@ export const CartItem = ({ product }: { product: CartProduct }) => {
         <span className={styles.qty}>{product.quantity}</span>
         <Button
           className={styles.qtyBtn}
-          onClick={() => changeQuantity(product.id, product.quantity + 1)}
+          onClick={() => updateQty(product.id, product.quantity + 1)}
         >
           +
         </Button>
         <span className={styles.total}>${product.total.toFixed(2)}</span>
         <Button
           className={styles.removeBtn}
-          onClick={() => changeQuantity(product.id, 0)}
+          onClick={() => updateQty(product.id, 0)}
           aria-label="Remove"
         >
           <CiTrash size={18} />

@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
-import { addToCart, updateQuantity, clearCart } from "../api/cartThunks";
-import type { Product } from "@features/products/types/Product";
 import {
-  selectCart,
   selectCartProducts,
   selectCartCount,
   selectCartTotal,
@@ -11,11 +8,12 @@ import {
   selectAddingProductId,
   selectIsInCart,
 } from "../Cartselectors";
+import { addToCart, updateQuantity, clearCart } from "../api/cartThunks";
+import type { Product } from "@features/products/types/Product";
 
 export const useCart = () => {
   const dispatch = useAppDispatch();
 
-  const cart = useSelector(selectCart);
   const products = useSelector(selectCartProducts);
   const count = useSelector(selectCartCount);
   const total = useSelector(selectCartTotal);
@@ -23,22 +21,12 @@ export const useCart = () => {
   const addingProductId = useSelector(selectAddingProductId);
 
   const add = (product: Product) => dispatch(addToCart(product));
-  const changeQuantity = (productId: number, quantity: number) =>
+  const updateQty = (productId: number, quantity: number) =>
     dispatch(updateQuantity({ productId, quantity }));
   const clear = () => dispatch(clearCart());
 
-  const isInCart = (productId?: number) => useSelector(selectIsInCart(productId));
-
-  return {
-    cart,
-    products,
-    count,
-    total,
-    status,
-    addingProductId,
-    add,
-    changeQuantity,
-    clear,
-    isInCart,
-  };
+  return { products, count, total, status, addingProductId, add, updateQty, clear };
 };
+
+export const useIsInCart = (productId: number) =>
+  useSelector(selectIsInCart(productId));

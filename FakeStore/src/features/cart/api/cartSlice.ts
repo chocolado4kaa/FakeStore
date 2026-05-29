@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCart, addToCart, updateQuantity, clearCart } from "./cartThunks";
-import { CartState } from "../types/cartState";
+import { fetchCart, addToCart, updateQuantity, clearCart, loadFromStorage } from "./cartThunks";
+import type { CartState } from "../types/cartState";
 
 const initialState: CartState = {
-  data: null,
+  data: loadFromStorage(),
   status: "idle",
   addingProductId: null,
 };

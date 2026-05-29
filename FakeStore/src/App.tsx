@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Header } from "./shared/components/Header/Header";
 import { fetchMe } from "./features/auth/api/authThunks";
 import { useEffect } from "react";
@@ -31,7 +31,7 @@ const App = () => {
     }
   }, []);
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header />
       <WishlistDrawer />
       <main>
@@ -46,7 +46,7 @@ const App = () => {
         </Routes>
       </main>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
