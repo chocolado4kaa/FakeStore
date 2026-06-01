@@ -25,8 +25,7 @@ export const useCart = () => {
     dispatch(updateQuantity({ productId, quantity }));
   const clear = () => dispatch(clearCart());
 
-  return { products, count, total, status, addingProductId, add, updateQty, clear };
-};
+  const isInCart = (productId?: number) => useSelector(selectIsInCart(productId));
 
-export const useIsInCart = (productId: number) =>
-  useSelector(selectIsInCart(productId));
+  return { products, count, total, status, addingProductId, add, updateQty, clear, isInCart };
+};

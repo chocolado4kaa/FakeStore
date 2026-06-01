@@ -66,8 +66,8 @@ export const ProductPage = () => {
             <ProductInfo product={product} />
             <Button
               className={styles.addToCart}
-              onClick={() => add(product)}
-              disabled={isAdding || inCart}
+              onClick={() => (inCart ? navigate("/cart") : add(product))}
+              disabled={isAdding}
             >
               {isAdding ?
                 "Adding..."

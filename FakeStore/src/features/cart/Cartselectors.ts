@@ -6,5 +6,5 @@ export const selectCartCount = (state: RootState) => state.cart.data?.totalQuant
 export const selectCartTotal = (state: RootState) => state.cart.data?.total ?? 0;
 export const selectCartStatus = (state: RootState) => state.cart.status;
 export const selectAddingProductId = (state: RootState) => state.cart.addingProductId;
-export const selectIsInCart = (productId: number) => (state: RootState) =>
+export const selectIsInCart = (productId?: number) => (state: RootState) =>
   state.cart.data?.products.some((p) => p.id === productId) ?? false;
