@@ -45,6 +45,19 @@
   }
 }
 
+.addAllBtn{
+  margin: 1rem;
+  padding: 0.75rem 2rem;
+  background: $accent;
+  color: $bg;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 0.625rem;
+  transition: opacity $tr, transform $tr;
+
+  &:hover { opacity: 0.88; transform: translateY(-0.0625rem); color: $bg; }
+}
+
 .empty {
   flex: 1;
   display: flex;

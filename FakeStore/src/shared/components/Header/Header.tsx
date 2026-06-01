@@ -14,20 +14,20 @@ import {
 import { selectIsLoggedIn, selectUser } from "@features/auth/authSelectors";
 import { Dropdown } from "../Dropdown/Dropdown";
 import { useWishlist } from "@/features/wishlist/hooks/useWishlist";
+import { useCart } from "@/features/cart/hooks/Usecart";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { count: wishCount, toggleDrawer } = useWishlist();
+  const { count: cartCount } = useCart();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
   const userName = user ? `${user.firstName} ${user.lastName}` : "";
 
   const avatar = user && user.image ? user.image : "";
-
-  const cartCount = 0;
 
   const navigate = useNavigate();
 

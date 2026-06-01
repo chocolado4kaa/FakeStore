@@ -15,6 +15,8 @@ import { CollectionsPage } from "./pages/Collectionspage/Collectionspage";
 import { ProductPage } from "./pages/Product/Productpage";
 import { CartPage } from "./pages/CartPage/CartPage";
 import { fetchCart } from "./features/cart/api/cartThunks";
+import { CheckoutPage } from "./pages/Checkout/CheckoutPage";
+import { ProtectedRoute } from "./pages/ProtectedRoute";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,7 +31,7 @@ const App = () => {
         }
       });
     }
-  }, []);
+  }, [token]);
   return (
     <HashRouter>
       <Header />
@@ -38,11 +40,14 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/account" element={<ProfilePage />} />
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/collections/:category" element={<CollectionsPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/account/*" element={<ProfilePage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+          </Route>
         </Routes>
       </main>
       <Footer />
